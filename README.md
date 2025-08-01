@@ -68,6 +68,11 @@
 - Ajustes finais nos layouts da aplicação
 - Polimento da interface do usuário
 
+### 5.3
+- Implementação da página 404
+- Criação de página para rotas não encontradas
+- Integração com o layout principal da aplicação
+
 ## Proposta Pedagógica
 
 O curso segue uma progressão lógica onde cada módulo constrói sobre o anterior:
