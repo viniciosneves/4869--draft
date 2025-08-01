@@ -1,3 +1,4 @@
+import { useParams, Navigate } from 'react-router'
 import { AppLayout } from "../../layouts/App"
 import { posts } from "../Feed/data"
 import styles from './blogpost.module.css'
@@ -10,8 +11,16 @@ import { CommentList } from "../../components/CommentList"
 import ReactMarkdown from 'react-markdown'
 
 export const BlogPost = () => {
+    const { slug } = useParams()
+    
+    // Busca o post pelo slug
+    const post = posts.find(post => post.slug === slug)
+    
+    // Se não encontrar o post, redireciona para o feed
+    if (!post) {
+        return <Navigate to="/" replace />
+    }
 
-    const post = posts[0]
     return (
         <AppLayout>
             <main className={styles.main}>
