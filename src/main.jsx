@@ -13,18 +13,16 @@ import { BlogPost } from './pages/BlogPost/index.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/auth/login" element={<Login />} />
-      <Route path="/auth/register" element={<Register />} />
-      
-      <Route path="/" element={<Feed />} />
-      <Route path="/blog-post" element={<BlogPost />} />
-      
-    </Routes>
-
-    {/* <Register /> */}
-    {/* <Feed /> */}
-    {/* <BlogPost /> */}
+      <Routes>
+        <Route path="/">
+          <Route path="" element={<Feed />} />
+          <Route path="blog-post" element={<BlogPost />} />
+        </Route>
+        <Route path="/auth">
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   </StrictMode>,
 )
