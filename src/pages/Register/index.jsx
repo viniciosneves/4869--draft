@@ -14,14 +14,48 @@ import { TextDivider } from "../../components/TextDivider"
 import { Providers } from "../../components/Providers"
 import { Link } from "../../components/Link"
 import styles from './register.module.css'
+import { useAuth } from "../../hooks/useAuth"
+import { useNavigate } from "react-router"
+import { useState } from "react"
 
 export const Register = () => {
+    const { register } = useAuth()
+    const navigate = useNavigate()
+    const [error, setError] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+
+    const handleRegister = async (formData) => {
+        setError("")
+        setIsLoading(true)
+
+        const name = formData.get('nome')
+        const email = formData.get('email')
+        const password = formData.get('password')
+
+        const result = register(name, email, password)
+
+        if (result.success) {
+            navigate('/auth/login', { replace: true })
+        } else {
+            setError(result.error)
+        }
+        
+        setIsLoading(false)
+    }
+
     return (
         <AuthLayout>
             <AuthFormContainer bannerSrc={banner}>
                 <Typography variant="h1" color="--offwhite">Cadastro</Typography>
                 <Typography variant="h2" color="--offwhite">Olá! Preencha seus dados.</Typography>
-                <Form action="">
+                
+                {error && (
+                    <Typography variant="body" style={{ marginBottom: '1rem', textAlign: 'center', color: '#ff6b6b' }}>
+                        {error}
+                    </Typography>
+                )}
+
+                <Form action={handleRegister}>
                     <Fieldset>
                         <Label>
                             Nome
@@ -55,10 +89,10 @@ export const Register = () => {
                             type="password"
                             required
                         />
-                        <Checkbox label="Lembrar-me" required />
+                        <Checkbox label="Concordo com os termos de uso" required />
                     </Fieldset>
-                    <Button type="submit">
-                        Login <IconArrowFoward />
+                    <Button type="submit" disabled={isLoading}>
+                        {isLoading ? "Cadastrando..." : "Cadastrar"} <IconArrowFoward />
                     </Button>
                 </Form>
                 <div>
