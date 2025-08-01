@@ -4,6 +4,7 @@ import { Register } from '../pages/Register/index.jsx'
 import { Feed } from '../pages/Feed/index.jsx'
 import { BlogPost } from '../pages/BlogPost/index.jsx'
 import { Logout } from '../pages/Logout/index.jsx'
+import { NotFound } from '../pages/NotFound/index.jsx'
 import { ProtectedRoute } from '../components/ProtectedRoute/index.jsx'
 import { AuthLayout } from '../layouts/Auth'
 import { AppLayout } from '../layouts/App'
@@ -19,6 +20,7 @@ export const AppRoutes = () => {
             }>
                 <Route path="" element={<Feed />} />
                 <Route path="blog-post/:slug" element={<BlogPost />} />
+                <Route path="*" element={<NotFound />} />
             </Route>
 
             {/* Rotas de autenticação com AuthLayout */}
