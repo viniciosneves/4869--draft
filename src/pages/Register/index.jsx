@@ -7,7 +7,7 @@ import { AuthLayout } from "../../layouts/Auth"
 import { Button } from "../../components/Button"
 import banner from './banner-register.png'
 import { IconArrowFoward } from "../../components/icons/IconArrowFoward"
-import { IconAssignement } from "../../components/icons/IconAssignement"
+import { IconLogin } from "../../components/icons/IconLogin"
 import { Form } from "../../components/Form"
 import { Fieldset } from "../../components/Fieldset"
 import { TextDivider } from "../../components/TextDivider"
@@ -24,7 +24,7 @@ export const Register = () => {
                 <Form action="">
                     <Fieldset>
                         <Label>
-                            Npme
+                            Nome
                         </Label>
                         <Input
                             name="nome"
@@ -67,13 +67,13 @@ export const Register = () => {
                 </div>
                 <footer className={styles.footer}>
                     <Typography variant="body" color="--offwhite">
-                        Ainda não tem conta?
+                        Já tem conta?
                     </Typography>
-                    <Link href='/signon'>
+                    <Link href='/auth/login'>
                         <Typography variant="body" color="--highlight-green">
-                            Crie seu cadastro!
+                            Faça seu login!
                         </Typography>
-                        <IconAssignement color="#81FE88" />
+                        <IconLogin color="#81FE88" />
                     </Link>
                 </footer>
             </AuthFormContainer>

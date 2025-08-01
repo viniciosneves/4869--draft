@@ -27,7 +27,6 @@ export const BlogPost = () => {
                     <section className={styles.body}>
                         <h2>{post.title}</h2>
                         <p>{post.body}</p>
-                        <a href="#">Ver detalhes</a>
                     </section>
                     <footer className={styles.footer}>
                         <div className={styles.actions}>
