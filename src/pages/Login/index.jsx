@@ -14,14 +14,48 @@ import { TextDivider } from "../../components/TextDivider"
 import { Providers } from "../../components/Providers"
 import { Link } from "../../components/Link"
 import styles from './login.module.css'
+import { useAuth } from "../../hooks/useAuth"
+import { useNavigate } from "react-router"
+import { useState } from "react"
 
 export const Login = () => {
+    const { login } = useAuth()
+    const navigate = useNavigate()
+    const [error, setError] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+
+    const handleLogin = async (formData) => {
+        setError("")
+        setIsLoading(true)
+
+        const email = formData.get('email')
+        const password = formData.get('password')
+
+        const result = login(email, password)
+
+        if (result.success) {
+            // Redireciona para o feed após login bem-sucedido
+            navigate('/', { replace: true })
+        } else {
+            setError(result.error)
+        }
+        
+        setIsLoading(false)
+    }
+
     return (
         <AuthLayout>
             <AuthFormContainer bannerSrc={banner}>
                 <Typography variant="h1" color="--offwhite">Login</Typography>
                 <Typography variant="h2" color="--offwhite">Boas-vindas! Faça seu login.</Typography>
-                <Form action="">
+                
+                {error && (
+                    <Typography variant="body" style={{ marginBottom: '1rem', textAlign: 'center', color: '#ff6b6b' }}>
+                        {error}
+                    </Typography>
+                )}
+
+                <Form action={handleLogin}>
                     <Fieldset>
                         <Label>
                             E-mail
@@ -44,10 +78,10 @@ export const Login = () => {
                             type="password"
                             required
                         />
-                        <Checkbox label="Lembrar-me" required />
+                        <Checkbox label="Lembrar-me" />
                     </Fieldset>
-                    <Button type="submit">
-                        Login <IconArrowFoward />
+                    <Button type="submit" disabled={isLoading}>
+                        {isLoading ? "Entrando..." : "Login"} <IconArrowFoward />
                     </Button>
                 </Form>
                 <div>
