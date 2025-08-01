@@ -9,6 +9,7 @@ import { Login } from './pages/Login/index.jsx'
 import { Register } from './pages/Register/index.jsx'
 import { Feed } from './pages/Feed/index.jsx'
 import { BlogPost } from './pages/BlogPost/index.jsx'
+import { Logout } from './pages/Logout/index.jsx'
 import { ProtectedRoute } from './components/ProtectedRoute/index.jsx'
 
 createRoot(document.getElementById('root')).render(
@@ -30,6 +31,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/auth">
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="logout" element={<Logout />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -11,11 +11,7 @@ import { useAuth } from '../../hooks/useAuth'
 import styles from './aside.module.css'
 
 export const Aside = () => {
-    const { isAuthenticated, logout } = useAuth()
-
-    const handleLogout = () => {
-        logout()
-    }
+    const { isAuthenticated } = useAuth()
 
     return (<aside className={styles.aside}>
         <nav>
@@ -50,7 +46,7 @@ export const Aside = () => {
                 </li>
                 <li>
                     {isAuthenticated ? (
-                        <AsideLink href="#" onClick={handleLogout}>
+                        <AsideLink href="/auth/logout">
                             <IconLogin />
                             Logout
                         </AsideLink>
